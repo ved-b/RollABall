@@ -32,6 +32,12 @@ public class BallConroller : MonoBehaviour
         }
 
         Vector3 inputXZPlane = new Vector3(inputVector.x, 0, inputVector.y);
+        Vector3 jump = new Vector3(0, 1, 0);
         sphereRigidbody.AddForce(inputXZPlane * ballSpeed);
+
+        if (inputVector.GetKeyDown(KeyCode.Space) && sphereRigidbody.velocity.y == 0)
+        {
+            sphereRigidbody.AddForce(jump);
+        }
     }
 }
