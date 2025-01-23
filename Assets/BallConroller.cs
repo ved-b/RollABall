@@ -35,10 +35,16 @@ public class BallConroller : MonoBehaviour
         
         sphereRigidbody.AddForce(inputXZPlane * ballSpeed);
 
-        if (Input.GetKey(KeyCode.Space) && sphereRigidbody.transform.position.y <= 0.5f)
+        if (Input.GetKey(KeyCode.Space) && Physics.Raycast(sphereRigidbody.transform.position, Vector3.down, 1.0f))
         {
-            Vector3 jump = new Vector3(0, 50, 0);
+            Vector3 jump = new Vector3(0, 5, 0);
             sphereRigidbody.AddForce(jump * ballSpeed);
+        }
+
+        if (sphereRigidbody.transform.position.y < -10)
+        {
+            sphereRigidbody.transform.position = new Vector3(0, 1, 0);
+            sphereRigidbody.linearVelocity = Vector3.zero;
         }
     }
 }
